@@ -1,0 +1,57 @@
+<section class="section">
+  <div class="container">
+    <div class="title is-1">
+      <p>Weigh Ins</p>
+    </div>
+
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li class="is-active"><a href="#" aria-current="page">Weigh Ins</a></li>
+      </ul>
+    </nav>
+
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <p class="subtitle is-5">
+            <strong><%= @weigh_ins.size %></strong> weigh in(s)
+          </p>
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <%= form_tag upload_weigh_ins_path, method: :post, multipart: true do %>
+            <div class="file is-boxed is-success">
+              <label class="file-label">
+                <input class="file-input" type="file" name="data" onchange="form.submit()">
+                <span class="file-cta">
+                  <span class="file-label">
+                    Upload
+                  </span>
+                </span>
+              </label>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Weight</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @weigh_ins.each do |weigh_in| %>
+          <tr>
+            <td><%= weigh_in.created_at %></td>
+            <td><%= weigh_in.weight %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

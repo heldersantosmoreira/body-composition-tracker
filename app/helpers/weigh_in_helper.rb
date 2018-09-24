@@ -1,4 +1,6 @@
 module WeighInHelper
+  START_DATE = Date.new(2018, 8, 28)
+
   KEYWORDS = {
     'date' => 'DT',
     'time' => 'Ti',

@@ -31,7 +31,7 @@ class WeighInsController < ApplicationController
             visceral_fat: prettified['visceral'].to_i,
             metabolic_age: prettified['meta_age'].to_i,
             water: prettified['water'].to_f,
-          ) if prettified['date'] > WeighIn.maximum(:when)
+          ) if prettified['date'] > (WeighIn.maximum(:when) || START_DATE)
         end
       end
 

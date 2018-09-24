@@ -35,6 +35,9 @@ class WeighInsController < ApplicationController
         end
       end
 
+      # review this to make a bulk insert (INSERT INTO X VALUES (x,y,z),(p,l,m))
+      # if the turns out that one inserts lots of records using this feature
+      # typically it should be no more than 10 at the most
       data.each(&:save!)
       flash[:notice] = "#{data.size} records inserted."
     else

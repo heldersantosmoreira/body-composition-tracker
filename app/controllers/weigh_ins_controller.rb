@@ -3,7 +3,7 @@ class WeighInsController < ApplicationController
   include ApplicationHelper
 
   def index
-    @weigh_ins = WeighIn.all.order(when: :desc)
+    @weigh_ins = WeighIn.order(when: :desc).page(params[:page]).per(20)
   end
 
   def upload

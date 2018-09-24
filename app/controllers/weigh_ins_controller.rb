@@ -1,6 +1,6 @@
 class WeighInsController < ApplicationController
   def index
-    @weigh_ins = WeighIn.all
+    @weigh_ins = WeighIn.all.order(when: :desc)
   end
 
   def upload

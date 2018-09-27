@@ -1,6 +1,5 @@
 class WeighInsController < ApplicationController
-  include WeighInHelper
-  include ApplicationHelper
+  helper WeighInHelper
 
   def index
     @weigh_ins = WeighIn.order(when: :desc).page(params[:page]).per(20)
@@ -15,7 +14,7 @@ class WeighInsController < ApplicationController
           originals = Hash[*line.split(',')]
           prettified = {}
 
-          DESIRED.each { |keyword| prettified[keyword] = originals[KEYWORDS[keyword]] }
+          WeighInHelper::DESIRED.each { |keyword| prettified[keyword] = originals[WeighInHelper::KEYWORDS[keyword]] }
 
           # strip date and time field of quotes and escape characters
           prettified['date'] = Date.strptime(prettified['date'].gsub(/\A"|"\Z/, ''), "%d/%m/%Y")

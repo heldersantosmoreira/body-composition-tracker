@@ -1,0 +1,59 @@
+<section class="section">
+  <div class="container">
+    <div class="title is-1">
+      <p>Stats</p>
+    </div>
+
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li class="is-active"><a href="#" aria-current="page">Stats</a></li>
+      </ul>
+    </nav>
+  </div>
+</section>
+
+<section class="hero is-dark">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="subtitle">
+        Latest Weigh In
+      </h2>
+      <h1 class="title">
+        <%= @latest_weigh_in.weight %> kg
+      </h1>
+      <h1 class="title">
+        <%= @latest_weigh_in.fat %> % body fat
+      </h1>
+      <h1 class="title">
+        <%= @latest_weigh_in.when.strftime("%e %B %Y") %>
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-warning">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="subtitle">
+        Weight goal: <%= StatsHelper::WEIGHT_GOAL %>
+      </h2>
+      <h1 class="title">
+        <%= (@latest_weigh_in.weight - StatsHelper::WEIGHT_GOAL).round(2) %> kg to go
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="subtitle">
+        Body Fat % goal: <%= StatsHelper::BODY_FAT_GOAL %>
+      </h2>
+      <h1 class="title">
+        <%= (@latest_weigh_in.fat - StatsHelper::BODY_FAT_GOAL).round(2) %> % to go
+      </h1>
+    </div>
+  </div>
+</section>

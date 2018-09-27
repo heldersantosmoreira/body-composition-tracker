@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :weigh_ins, only: [:index] do
     post :upload, on: :collection
   end
+
+  resources :stats, only: [:index]
 end

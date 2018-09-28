@@ -20,13 +20,13 @@
         Latest Weigh In
       </h2>
       <h1 class="title">
-        <%= @latest_weigh_in.weight %> kg
+        <%= @latest_weigh_in.present? ? @latest_weigh_in.weight : '-' %> kg
       </h1>
       <h1 class="title">
-        <%= @latest_weigh_in.fat %> % body fat
+        <%= @latest_weigh_in.present? ? @latest_weigh_in.fat : '-' %> % body fat
       </h1>
       <h1 class="title">
-        <%= @latest_weigh_in.when.strftime("%e %B %Y") %>
+        <%= @latest_weigh_in.present? ? @latest_weigh_in.when.strftime("%e %B %Y") : '-' %>
       </h1>
     </div>
   </div>
@@ -39,7 +39,7 @@
         Weight goal: <%= StatsHelper::WEIGHT_GOAL %>
       </h2>
       <h1 class="title">
-        <%= (@latest_weigh_in.weight - StatsHelper::WEIGHT_GOAL).round(2) %> kg to go
+        <%= @latest_weigh_in.present? ? (@latest_weigh_in.weight - StatsHelper::WEIGHT_GOAL).round(2) : '-' %> kg to go
       </h1>
     </div>
   </div>
@@ -52,7 +52,7 @@
         Body Fat % goal: <%= StatsHelper::BODY_FAT_GOAL %>
       </h2>
       <h1 class="title">
-        <%= (@latest_weigh_in.fat - StatsHelper::BODY_FAT_GOAL).round(2) %> % to go
+        <%= @latest_weigh_in.present? ? (@latest_weigh_in.fat - StatsHelper::BODY_FAT_GOAL).round(2) : '-' %> % to go
       </h1>
     </div>
   </div>

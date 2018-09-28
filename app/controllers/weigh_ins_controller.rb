@@ -1,6 +1,4 @@
 class WeighInsController < ApplicationController
-  helper WeighInHelper
-
   def index
     @weigh_ins = WeighIn.order(when: :desc).page(params[:page]).per(20)
   end
@@ -30,7 +28,7 @@ class WeighInsController < ApplicationController
             visceral_fat: prettified['visceral'].to_i,
             metabolic_age: prettified['meta_age'].to_i,
             water: prettified['water'].to_f,
-          ) if prettified['date'] > (WeighIn.maximum(:when) || START_DATE)
+          ) if prettified['date'] > (WeighIn.maximum(:when) || WeighInHelper::START_DATE)
         end
       end
 

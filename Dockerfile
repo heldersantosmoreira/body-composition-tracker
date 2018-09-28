@@ -6,3 +6,4 @@ COPY Gemfile /body_composition_tracker/Gemfile
 COPY Gemfile.lock /body_composition_tracker/Gemfile.lock
 RUN bundle install
 COPY . /body_composition_tracker
+CMD ["puma"]

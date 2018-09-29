@@ -15,7 +15,8 @@
       <div class="level-left">
         <div class="level-item">
           <p class="subtitle is-5">
-            <strong><%= @weigh_ins.size %></strong> weigh in(s)
+            <% total_count = @weigh_ins.total_count %>
+            <strong><%= @weigh_ins.size %></strong> out of <strong><%= total_count %></strong> <%= "weigh in".pluralize(total_count) %>
           </p>
         </div>
       </div>

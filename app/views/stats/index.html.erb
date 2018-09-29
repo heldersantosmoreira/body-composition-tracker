@@ -13,47 +13,59 @@
   </div>
 </section>
 
-<section class="hero is-dark">
+<section class="hero is-dark is-bold">
   <div class="hero-body">
     <div class="container">
-      <h2 class="subtitle">
+      <h1 class="title">
         Latest Weigh In
-      </h2>
-      <h1 class="title">
-        <%= @latest_weigh_in.present? ? @latest_weigh_in.weight : '-' %> kg
       </h1>
-      <h1 class="title">
-        <%= @latest_weigh_in.present? ? @latest_weigh_in.fat : '-' %> % body fat
-      </h1>
-      <h1 class="title">
+      <h2 class="subtitle">
         <%= @latest_weigh_in.present? ? @latest_weigh_in.when.strftime("%e %B %Y") : '-' %>
-      </h1>
+      </h2>
+      <h2 class="subtitle">
+        <%= @latest_weigh_in.present? ? @latest_weigh_in.weight : '-' %> kg
+      </h2>
+      <h2 class="subtitle">
+        <%= @latest_weigh_in.present? ? @latest_weigh_in.fat : '-' %>% body fat
+      </h2>
     </div>
   </div>
 </section>
 
-<section class="hero is-warning">
+<section class="hero is-info is-bold">
   <div class="hero-body">
     <div class="container">
-      <h2 class="subtitle">
-        Weight goal: <%= StatsHelper::WEIGHT_GOAL %>
-      </h2>
       <h1 class="title">
-        <%= @latest_weigh_in.present? ? (@latest_weigh_in.weight - StatsHelper::WEIGHT_GOAL).round(2) : '-' %> kg to go
+        Lowest weight
       </h1>
+      <h2 class="subtitle">
+        <%= @lowest_weight.present? ? @lowest_weight.when.strftime("%e %B %Y") : '-' %>
+      </h2>
+      <h2 class="subtitle">
+        <%= @lowest_weight.present? ? @lowest_weight.weight : '-' %> kg
+      </h2>
+      <h2 class="subtitle">
+        <%= @lowest_weight.present? ? (@lowest_weight.weight - StatsHelper::WEIGHT_GOAL).round(2) : '-' %> kg to <%= StatsHelper::WEIGHT_GOAL %> kg
+      </h2>
     </div>
   </div>
 </section>
 
-<section class="hero is-info">
+<section class="hero is-primary is-bold">
   <div class="hero-body">
     <div class="container">
-      <h2 class="subtitle">
-        Body Fat % goal: <%= StatsHelper::BODY_FAT_GOAL %>
-      </h2>
       <h1 class="title">
-        <%= @latest_weigh_in.present? ? (@latest_weigh_in.fat - StatsHelper::BODY_FAT_GOAL).round(2) : '-' %> % to go
+        Lowest body fat
       </h1>
+      <h2 class="subtitle">
+        <%= @lowest_fat.present? ? @lowest_fat.when.strftime("%e %B %Y") : '-' %>
+      </h2>
+      <h2 class="subtitle">
+        <%= @lowest_fat.present? ? @lowest_fat.fat : '-' %>%
+      </h2>
+      <h2 class="subtitle">
+        <%= @lowest_fat.present? ? (@lowest_fat.fat - StatsHelper::FAT_GOAL).round(2) : '-' %>% to <%= StatsHelper::FAT_GOAL %>%
+      </h2>
     </div>
   </div>
 </section>

@@ -18,8 +18,6 @@ class WeighInsController < ApplicationController
           prettified['date'] = Date.strptime(prettified['date'].gsub(/\A"|"\Z/, ''), "%d/%m/%Y")
           prettified['time'] = prettified['time'].gsub(/\A"|"\Z/, '')
 
-          puts prettified
-
           data << WeighIn.new(
             when: DateTime.parse("#{prettified['date']} #{prettified['time']}"),
             weight: prettified['weight'].to_f,

@@ -13,59 +13,43 @@
   </div>
 </section>
 
-<section class="hero is-dark is-bold">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Latest Weigh In
-      </h1>
-      <h2 class="subtitle">
-        <%= @latest_weigh_in.present? ? @latest_weigh_in.when.strftime("%e %B %Y") : '-' %>
-      </h2>
-      <h2 class="subtitle">
-        <%= @latest_weigh_in.present? ? @latest_weigh_in.weight : '-' %> kg
-      </h2>
-      <h2 class="subtitle">
-        <%= @latest_weigh_in.present? ? @latest_weigh_in.fat : '-' %>% body fat
-      </h2>
-    </div>
-  </div>
-</section>
-
-<section class="hero is-info is-bold">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Lowest weight
-      </h1>
-      <h2 class="subtitle">
-        <%= @lowest_weight.present? ? @lowest_weight.when.strftime("%e %B %Y") : '-' %>
-      </h2>
-      <h2 class="subtitle">
-        <%= @lowest_weight.present? ? @lowest_weight.weight : '-' %> kg
-      </h2>
-      <h2 class="subtitle">
-        <%= @lowest_weight.present? ? (@lowest_weight.weight - StatsHelper::WEIGHT_GOAL).round(2) : '-' %> kg to <%= StatsHelper::WEIGHT_GOAL %> kg
-      </h2>
-    </div>
-  </div>
-</section>
-
-<section class="hero is-primary is-bold">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Lowest body fat
-      </h1>
-      <h2 class="subtitle">
-        <%= @lowest_fat.present? ? @lowest_fat.when.strftime("%e %B %Y") : '-' %>
-      </h2>
-      <h2 class="subtitle">
-        <%= @lowest_fat.present? ? @lowest_fat.fat : '-' %>%
-      </h2>
-      <h2 class="subtitle">
-        <%= @lowest_fat.present? ? (@lowest_fat.fat - StatsHelper::FAT_GOAL).round(2) : '-' %>% to <%= StatsHelper::FAT_GOAL %>%
-      </h2>
-    </div>
+<section class="section">
+  <div class="container">
+    <table class="table is-striped is-hoverable is-fullwidth">
+      <thead>
+        <tr>
+          <th>Date range</th>
+          <th>Sample size</th>
+          <th>7 day weight average</th>
+          <th>Difference</th>
+          <th>7 day % fat average</th>
+          <th>Difference</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rolling_7day_average.each_with_index do |avg, index| %>
+          <tr>
+            <td><%= avg[:date_range].last.strftime("%d/%m/%Y") %> - <%= avg[:date_range].first.strftime("%d/%m/%Y") %></td>
+            <td><%= avg[:size] %></td>
+            <td><%= avg[:weight_average].round(2) %></td>
+            <td>
+              <% if (index + 1) < @rolling_7day_average.size %>
+                <%= (avg[:weight_average] - @rolling_7day_average[index + 1][:weight_average] ).round(2) %>
+              <% else %>
+                -
+              <% end %>
+            </td>
+            <td><%= avg[:fat_average].round(2) %></td>
+            <td>
+              <% if (index + 1) < @rolling_7day_average.size %>
+                <%= (avg[:fat_average] - @rolling_7day_average[index + 1][:fat_average]).round(2) %>
+              <% else %>
+                -
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </section>

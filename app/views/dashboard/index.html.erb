@@ -1,23 +1,22 @@
 <section class="section">
   <div class="container">
     <div class="title is-1">
-      <p>Body Composition Tracker</p>
+      <p>💪 Body Composition Tracker</p>
     </div>
-    <div class="tile is-ancestor">
-      <%= link_to weigh_ins_path do %>
-        <div class="tile is-parent is-12">
-          <article class="tile is-child notification is-success">
-            <p class="title">Weigh Ins</p>
-          </article>
-        </div>
-      <% end %>
-      <%= link_to stats_path do %>
-        <div class="tile is-parent is-12">
-          <article class="tile is-child notification is-warning">
-            <p class="title">Stats</p>
-          </article>
-        </div>
-      <% end %>
+    <div class="buttons">
+      <%= link_to 'Weigh Ins', weigh_ins_path, class: 'button is-large is-warning' %>
+      <%= link_to 'Stats', stats_path, class: 'button is-large is-success' %>
     </div>
   </div>
 </section>
+
+<% if @progress.present? %>
+  <section class="section">
+    <div class="container">
+      <div class="title is-2">
+      <p>96</p>
+    </div>
+      <progress class="progress is-large" value="<%= @progress %>"  max="100"><%= @progress %>%</progress>
+    </div>
+  </section>
+<% end %>

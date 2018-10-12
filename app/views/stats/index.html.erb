@@ -13,41 +13,91 @@
   </div>
 </section>
 
+<section class="hero is-warning is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Starting weight
+      </h1>
+      <h2 class="subtitle">
+        <% if @starting.present? %>
+          <%= "#{@starting.weight} (#{@starting.when.strftime("%d/%m/%Y")})" %>
+        <% else %>
+          -
+        <% end %>
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-info is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Lowest weight
+      </h1>
+      <h2 class="subtitle">
+        <% if @lowest.present? %>
+          <%= "#{@lowest.weight} (#{@lowest.when.strftime("%d/%m/%Y")})" %>
+        <% else %>
+          -
+        <% end %>
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-success is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Latest weight
+      </h1>
+      <h2 class="subtitle">
+        <% if @latest.present? %>
+          <%= "#{@latest.weight} (#{@latest.when.strftime("%d/%m/%Y")})" %>
+        <% else %>
+          -
+        <% end %>
+      </h2>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
+    <div class="content">
+      <h1>Week averages</h1>
+    </div>
     <table class="table is-striped is-hoverable is-fullwidth">
       <thead>
         <tr>
           <th>Date range</th>
-          <th>Sample size</th>
-          <th>7 day weight average</th>
-          <th>Difference</th>
-          <th>7 day % fat average</th>
-          <th>Difference</th>
+          <th># of weigh ins</th>
+          <th>Weight average</th>
+          <th>% Fat average</th>
         </tr>
       </thead>
       <tbody>
-        <% @rolling_7day_average.each_with_index do |avg, index| %>
-          <tr>
-            <td><%= avg[:date_range].last.strftime("%d/%m/%Y") %> - <%= avg[:date_range].first.strftime("%d/%m/%Y") %></td>
-            <td><%= avg[:size] %></td>
-            <td><%= avg[:weight_average].round(2) %></td>
-            <td>
-              <% if (index + 1) < @rolling_7day_average.size %>
-                <%= (avg[:weight_average] - @rolling_7day_average[index + 1][:weight_average] ).round(2) %>
-              <% else %>
-                -
-              <% end %>
-            </td>
-            <td><%= avg[:fat_average].round(2) %></td>
-            <td>
-              <% if (index + 1) < @rolling_7day_average.size %>
-                <%= (avg[:fat_average] - @rolling_7day_average[index + 1][:fat_average]).round(2) %>
-              <% else %>
-                -
-              <% end %>
-            </td>
-          </tr>
+        <% if @rolling_7day_average.present? %>
+          <% @rolling_7day_average.each_with_index do |avg, index| %>
+            <tr>
+              <td><%= avg[:date_range].last.strftime("%d/%m/%Y") %> - <%= avg[:date_range].first.strftime("%d/%m/%Y") %></td>
+              <td><%= avg[:size] %></td>
+              <td>
+                <%= avg[:weight_average].round(2) %>
+                <% if (index + 1) < @rolling_7day_average.size %>
+                  (<%= sprintf("%+.2f", avg[:weight_average] - @rolling_7day_average[index + 1][:weight_average]) %>)
+                <% end %>
+              </td>
+              <td>
+                <%= avg[:fat_average].round(2) %>
+                <% if (index + 1) < @rolling_7day_average.size %>
+                  (<%= sprintf("%+.2f", avg[:fat_average] - @rolling_7day_average[index + 1][:fat_average]) %>)
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>

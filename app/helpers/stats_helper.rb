@@ -1,3 +1,3 @@
 module StatsHelper
-  WEIGHT_GOAL = 96
+  WEIGHT_GOALS = [96, 92, 88]
 end

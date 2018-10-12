@@ -3,9 +3,13 @@ class DashboardController < ApplicationController
     latest = WeighIn.order(when: :desc).first
     first = WeighIn.order(when: :asc).first
 
-    distance = first.weight - StatsHelper::WEIGHT_GOAL
-    current_distance = latest.weight - StatsHelper::WEIGHT_GOAL
-
-    @progress = latest.present? ? (current_distance * 100 / distance).to_i  : nil
+    if latest.present? && first.present?
+      @progresses = StatsHelper::WEIGHT_GOALS.each_with_index.map do |weight, i|
+        {
+          goal: weight,
+          progress: ((1 - (latest.weight - weight) / (first.weight - weight)) * 100).to_i
+        }
+      end
+    end
   end
 end

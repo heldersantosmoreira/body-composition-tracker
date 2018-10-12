@@ -10,13 +10,15 @@
   </div>
 </section>
 
-<% if @progress.present? %>
+<% if @progresses.present? %>
   <section class="section">
     <div class="container">
-      <div class="title is-2">
-      <p>96</p>
-    </div>
-      <progress class="progress is-large" value="<%= @progress %>"  max="100"><%= @progress %>%</progress>
+      <% @progresses.each do |progress| %>
+        <div class="title is-2">
+          <p><%= progress[:goal] %></p>
+        </div>
+        <progress class="progress is-large" value="<%= progress[:progress] %>"  max="100"><%= progress[:progress] %>%</progress>
+      <% end %>
     </div>
   </section>
 <% end %>

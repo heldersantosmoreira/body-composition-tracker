@@ -4,35 +4,44 @@
       <p>Stats</p>
     </div>
 
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-      <ul>
-        <li><%= link_to 'Home', root_path %></li>
-        <li class="is-active"><a href="#" aria-current="page">Stats</a></li>
-      </ul>
-    </nav>
-  </div>
-</section>
-
-<section class="hero is-warning is-bold">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Starting weight
-      </h1>
-      <h2 class="subtitle">
-        <% if @starting.present? %>
-          <%= "#{@starting.weight} (#{@starting.when.strftime("%d/%m/%Y")})" %>
-        <% else %>
-          -
-        <% end %>
-      </h2>
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <nav class="breadcrumb" aria-label="breadcrumbs">
+            <ul>
+              <li><%= link_to 'Home', root_path %></li>
+              <li class="is-active"><a href="#" aria-current="page">Stats</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <div class="buttons">
+            <%= link_to 'Weekly averages', weekly_stats_path, class: 'button is-large is-link' %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="hero is-info is-bold">
+<section class="hero is-light is-bold">
   <div class="hero-body">
     <div class="container">
+      <p>
+        <h1 class="title">
+          Starting weight
+        </h1>
+        <h2 class="subtitle">
+          <% if @starting.present? %>
+            <%= "#{@starting.weight} (#{@starting.when.strftime("%d/%m/%Y")})" %>
+          <% else %>
+            -
+          <% end %>
+        </h2>
+      </p>
+    <p>
       <h1 class="title">
         Lowest weight
       </h1>
@@ -43,13 +52,8 @@
           -
         <% end %>
       </h2>
-    </div>
-  </div>
-</section>
-
-<section class="hero is-success is-bold">
-  <div class="hero-body">
-    <div class="container">
+    </p>
+    <p>
       <h1 class="title">
         Latest weight
       </h1>
@@ -60,46 +64,6 @@
           -
         <% end %>
       </h2>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="content">
-      <h1>Week averages</h1>
-    </div>
-    <table class="table is-striped is-hoverable is-fullwidth">
-      <thead>
-        <tr>
-          <th>Date range</th>
-          <th># of weigh ins</th>
-          <th>Weight average</th>
-          <th>% Fat average</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% if @rolling_7day_average.present? %>
-          <% @rolling_7day_average.each_with_index do |avg, index| %>
-            <tr>
-              <td><%= avg[:date_range].last.strftime("%d/%m/%Y") %> - <%= avg[:date_range].first.strftime("%d/%m/%Y") %></td>
-              <td><%= avg[:size] %></td>
-              <td>
-                <%= avg[:weight_average].round(2) %>
-                <% if (index + 1) < @rolling_7day_average.size %>
-                  (<%= sprintf("%+.2f", avg[:weight_average] - @rolling_7day_average[index + 1][:weight_average]) %>)
-                <% end %>
-              </td>
-              <td>
-                <%= avg[:fat_average].round(2) %>
-                <% if (index + 1) < @rolling_7day_average.size %>
-                  (<%= sprintf("%+.2f", avg[:fat_average] - @rolling_7day_average[index + 1][:fat_average]) %>)
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
+    </p>
   </div>
 </section>

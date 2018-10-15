@@ -6,5 +6,9 @@ Rails.application.routes.draw do
     post :upload, on: :collection
   end
 
-  resources :stats, only: [:index]
+  resources :stats, only: [:index] do
+    collection do
+      get :weekly
+  end
+  end
 end

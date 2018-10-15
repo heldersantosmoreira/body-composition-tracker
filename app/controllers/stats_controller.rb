@@ -1,5 +1,11 @@
 class StatsController < ApplicationController
   def index
+    @starting = WeighIn.order(when: :asc).first
+    @lowest = WeighIn.order(weight: :asc).first
+    @latest = WeighIn.order(when: :desc).first
+  end
+
+  def weekly
     @weigh_ins = WeighIn.order(when: :asc).all
     @starting = @weigh_ins.first
     @lowest = WeighIn.order(weight: :asc).first

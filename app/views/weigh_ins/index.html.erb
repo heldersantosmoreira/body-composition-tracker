@@ -4,26 +4,21 @@
       <p>Weigh Ins</p>
     </div>
 
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-      <ul>
-        <li><%= link_to 'Home', root_path %></li>
-        <li class="is-active"><a href="#" aria-current="page">Weigh Ins</a></li>
-      </ul>
-    </nav>
-
     <div class="level">
       <div class="level-left">
         <div class="level-item">
-          <p class="subtitle is-5">
-            <% total_count = @weigh_ins.total_count %>
-            <strong><%= @weigh_ins.size %></strong> out of <strong><%= total_count %></strong> <%= "weigh in".pluralize(total_count) %>
-          </p>
+          <nav class="breadcrumb" aria-label="breadcrumbs">
+            <ul>
+              <li><%= link_to 'Home', root_path %></li>
+              <li class="is-active"><a href="#" aria-current="page">Weigh Ins</a></li>
+            </ul>
+          </nav>
         </div>
       </div>
       <div class="level-right">
         <div class="level-item">
           <%= form_tag upload_weigh_ins_path, method: :post, multipart: true do %>
-            <div class="file is-boxed is-success">
+            <div class="file is-boxed is-link">
               <label class="file-label">
                 <input class="file-input" type="file" name="data" onchange="form.submit()">
                 <span class="file-cta">
@@ -37,8 +32,15 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <br>
 
     <div class="container">
+      <p class="subtitle is-5">
+        <% total_count = @weigh_ins.total_count %>
+        <strong><%= @weigh_ins.size %></strong> out of <strong><%= total_count %></strong> <%= "weigh in".pluralize(total_count) %>
+      </p>
       <%= paginate @weigh_ins %>
       <table class="table is-striped is-hoverable is-fullwidth">
         <thead>

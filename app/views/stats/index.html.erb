@@ -1,28 +1,20 @@
 <section class="section">
   <div class="container">
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li class="is-active"><a href="#" aria-current="page">Stats</a></li>
+      </ul>
+    </nav>
+
     <div class="title is-1">
       <p>Stats</p>
     </div>
 
-    <div class="level">
-      <div class="level-left">
-        <div class="level-item">
-          <nav class="breadcrumb" aria-label="breadcrumbs">
-            <ul>
-              <li><%= link_to 'Home', root_path %></li>
-              <li class="is-active"><a href="#" aria-current="page">Stats</a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-      <div class="level-right">
-        <div class="level-item">
-          <div class="buttons">
-            <%= link_to 'Weekly averages', weekly_stats_path, class: 'button is-large is-link' %>
-          </div>
-        </div>
-      </div>
+    <div class="buttons">
+      <%= link_to 'Weekly averages', weekly_stats_path, class: 'button is-medium is-link' %>
     </div>
+
   </div>
 </section>
 

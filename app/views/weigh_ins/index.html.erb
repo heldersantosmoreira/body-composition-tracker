@@ -1,37 +1,28 @@
 <section class="section">
   <div class="container">
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li class="is-active"><a href="#" aria-current="page">Weigh Ins</a></li>
+      </ul>
+    </nav>
+
     <div class="title is-1">
       <p>Weigh Ins</p>
     </div>
 
-    <div class="level">
-      <div class="level-left">
-        <div class="level-item">
-          <nav class="breadcrumb" aria-label="breadcrumbs">
-            <ul>
-              <li><%= link_to 'Home', root_path %></li>
-              <li class="is-active"><a href="#" aria-current="page">Weigh Ins</a></li>
-            </ul>
-          </nav>
-        </div>
+    <%= form_tag upload_weigh_ins_path, method: :post, multipart: true do %>
+      <div class="file  is-link">
+        <label class="file-label">
+          <input class="file-input" type="file" name="data" onchange="form.submit()">
+          <span class="file-cta">
+            <span class="file-label">
+              Upload
+            </span>
+          </span>
+        </label>
       </div>
-      <div class="level-right">
-        <div class="level-item">
-          <%= form_tag upload_weigh_ins_path, method: :post, multipart: true do %>
-            <div class="file is-boxed is-link">
-              <label class="file-label">
-                <input class="file-input" type="file" name="data" onchange="form.submit()">
-                <span class="file-cta">
-                  <span class="file-label">
-                    Upload
-                  </span>
-                </span>
-              </label>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
+    <% end %>
   </div>
 
   <br>

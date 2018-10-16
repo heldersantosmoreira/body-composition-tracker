@@ -18,6 +18,9 @@
         <div class="title is-2">
           <p><%= progress[:goal] %></p>
         </div>
+        <div class="title is-5">
+          <p><%= progress[:progress] %>%</p>
+        </div>
         <progress class="progress is-large" value="<%= progress[:progress] %>"  max="100"><%= progress[:progress] %>%</progress>
       <% end %>
     </div>

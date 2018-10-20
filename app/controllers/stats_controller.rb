@@ -10,7 +10,6 @@ class StatsController < ApplicationController
   def weekly
     @weigh_ins = WeighIn.order(when: :asc).all
     @starting = @weigh_ins.first
-    @lowest = WeighIn.order(weight: :asc).first
     @latest = WeighIn.order(when: :desc).first
 
     if @starting.present? && @latest.present?

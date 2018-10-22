@@ -1,0 +1,36 @@
+<section class="section">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Stats', stats_path %></li>
+        <li class="is-active"><a href="#" aria-current="page">Predictions</a></li>
+      </ul>
+    </nav>
+
+    <div class="title is-1">
+      <p>Stats</p>
+    </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="content">
+      <h1>Predictions</h1>
+    </div>
+    <% size = @linear_regression.size %>
+    <div class="content">
+      <h4>Current number of inputs: <%= size %></h4>
+    </div>
+    <div class="content">
+      <h4>T + 3: <%= @linear_regression.predict(size + 3).round(2) %></h4>
+      <h4>T + 7: <%= @linear_regression.predict(size + 7).round(2) %></h4>
+      <h4>T + 30: <%= @linear_regression.predict(size + 30).round(2) %></h4>
+      <h4>T + 60: <%= @linear_regression.predict(size + 60).round(2) %></h4>
+    </div>
+    </div>
+  </div>
+</section>

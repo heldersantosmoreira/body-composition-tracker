@@ -31,4 +31,8 @@ class StatsController < ApplicationController
       end.reverse
     end
   end
+
+  def predictions
+    @linear_regression = LinearRegression.new(WeighIn.order(when: :asc).pluck(:weight))
+  end
 end

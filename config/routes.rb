@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :stats, only: [:index] do
     collection do
       get :weekly_averages
+      get :predictions
   end
   end
 end

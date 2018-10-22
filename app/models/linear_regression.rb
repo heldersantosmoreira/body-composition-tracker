@@ -42,8 +42,8 @@ class LinearRegression
 
   # Get the "next" value if the sequence
   # was continued one more element
-  def next
-    predict (@size + 1)
+  def next(n=1)
+    predict (@size + n)
   end
 
   # Determine the target needed to stabilize

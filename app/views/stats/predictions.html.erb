@@ -21,16 +21,77 @@
     <div class="content">
       <h1>Predictions</h1>
     </div>
-    <% size = @linear_regression.size %>
+
     <div class="content">
-      <h4>Current number of inputs: <%= size %></h4>
+      <h3>All time (<%= @linear_regression_all.size %> inputs)</h3>
+      <table class="table is-striped is-hoverable is-fullwidth">
+        <tbody>
+          <tr>
+            <td>T + 3 days</td>
+            <td><%= @linear_regression_all.next(3).round(2) %></td>
+          </tr>
+          <tr>
+            <td>T + 7 days</td>
+            <td><%= @linear_regression_all.next(7).round(2) %></td>
+          </tr>
+          <tr>
+            <td>T + 15 days</td>
+            <td><%= @linear_regression_all.next(15).round(2) %></td>
+          </tr>
+          <tr>
+            <td>T + 30 days</td>
+            <td><%= @linear_regression_all.next(30).round(2) %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
     <div class="content">
-      <h4>T + 3: <%= @linear_regression.predict(size + 3).round(2) %></h4>
-      <h4>T + 7: <%= @linear_regression.predict(size + 7).round(2) %></h4>
-      <h4>T + 30: <%= @linear_regression.predict(size + 30).round(2) %></h4>
-      <h4>T + 60: <%= @linear_regression.predict(size + 60).round(2) %></h4>
+      <h3>Last 15 weigh ins</h3>
+      <table class="table is-striped is-hoverable is-fullwidth">
+        <tbody>
+          <tr>
+            <td>T + 3 days</td>
+            <td><%= @linear_regression_last_15.next(3).round(2) %></td>
+          </tr>
+          <tr>
+            <td>T + 7 days</td>
+            <td><%= @linear_regression_last_15.next(7).round(2) %></td>
+          </tr>
+          <tr>
+            <td>T + 15 days</td>
+            <td><%= @linear_regression_last_15.next(15).round(2) %></td>
+          </tr>
+          <tr>
+            <td>T + 30 days</td>
+            <td><%= @linear_regression_last_15.next(30).round(2) %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+    <div class="content">
+      <h3>Last 30 weigh ins</h3>
+      <table class="table is-striped is-hoverable is-fullwidth">
+        <tbody>
+          <tr>
+            <td>T + 3 days</td>
+            <td><%= @linear_regression_last_30.next(3).round(2) %></td>
+          </tr>
+          <tr>
+            <td>T + 7 days</td>
+            <td><%= @linear_regression_last_30.next(7).round(2) %></td>
+          </tr>
+          <tr>
+            <td>T + 15 days</td>
+            <td><%= @linear_regression_last_30.next(15).round(2) %></td>
+          </tr>
+          <tr>
+            <td>T + 30 days</td>
+            <td><%= @linear_regression_last_30.next(30).round(2) %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>

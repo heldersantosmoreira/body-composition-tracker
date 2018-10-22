@@ -33,6 +33,8 @@ class StatsController < ApplicationController
   end
 
   def predictions
-    @linear_regression = LinearRegression.new(WeighIn.order(when: :asc).pluck(:weight))
+    @linear_regression_all = LinearRegression.new(WeighIn.order(when: :asc).pluck(:weight))
+    @linear_regression_last_15 = LinearRegression.new(WeighIn.last(15).pluck(:weight))
+    @linear_regression_last_30 = LinearRegression.new(WeighIn.last(30).pluck(:weight))
   end
 end

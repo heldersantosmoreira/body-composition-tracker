@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :stats, only: [:index] do
     collection do
-      get :weekly
+      get :weekly_averages
   end
   end
 end

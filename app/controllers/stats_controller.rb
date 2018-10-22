@@ -7,7 +7,7 @@ class StatsController < ApplicationController
     @lowest_fat = WeighIn.order(fat: :asc).first
   end
 
-  def weekly
+  def weekly_averages
     @weigh_ins = WeighIn.order(when: :asc).all
     @starting = @weigh_ins.first
     @latest = WeighIn.order(when: :desc).first

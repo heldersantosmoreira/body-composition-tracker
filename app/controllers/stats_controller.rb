@@ -5,6 +5,9 @@ class StatsController < ApplicationController
 
     @lowest_weight = WeighIn.order(weight: :asc).first
     @lowest_fat = WeighIn.order(fat: :asc).first
+
+    @ema_weight = WeighIn.last(15).pluck(:weight).ema
+    @ema_fat = WeighIn.last(15).pluck(:fat).ema
   end
 
   def weekly_averages

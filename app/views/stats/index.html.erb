@@ -19,81 +19,62 @@
   </div>
 </section>
 
-<section class="hero is-light">
-  <div class="hero-body">
-    <div class="container">
-      <p>
-        <h1 class="title">
-          Starting weight
-        </h1>
-        <h2 class="subtitle">
-          <% if @starting.present? %>
-            <%= "#{@starting.weight} (#{@starting.when.strftime("%d/%m/%Y")})" %>
-          <% else %>
-            -
-          <% end %>
-        </h2>
-      </p>
-      <p>
-        <h1 class="title">
-          Lowest weight
-        </h1>
-        <h2 class="subtitle">
-          <% if @lowest_weight.present? %>
-            <%= "#{@lowest_weight.weight} (#{@lowest_weight.when.strftime("%d/%m/%Y")})" %>
-          <% else %>
-            -
-          <% end %>
-        </h2>
-      </p>
-      <p>
-        <h1 class="title">
-          Latest weight
-        </h1>
-        <h2 class="subtitle">
-          <% if @latest.present? %>
-            <%= "#{@latest.weight} (#{@latest.when.strftime("%d/%m/%Y")})" %>
-          <% else %>
-            -
-          <% end %>
-        </h2>
-      </p>
-      <p>
-        <h1 class="title">
-          Starting body fat
-        </h1>
-        <h2 class="subtitle">
-          <% if @starting.present? %>
-            <%= "#{@starting.fat} (#{@starting.when.strftime("%d/%m/%Y")})" %>
-          <% else %>
-            -
-          <% end %>
-        </h2>
-      </p>
-      <p>
-        <h1 class="title">
-          Lowest body fat
-        </h1>
-        <h2 class="subtitle">
-          <% if @lowest_fat.present? %>
-            <%= "#{@lowest_fat.fat} (#{@lowest_fat.when.strftime("%d/%m/%Y")})" %>
-          <% else %>
-            -
-          <% end %>
-        </h2>
-      </p>
-      <p>
-        <h1 class="title">
-          Latest body fat
-        </h1>
-        <h2 class="subtitle">
-          <% if @latest.present? %>
-            <%= "#{@latest.fat} (#{@latest.when.strftime("%d/%m/%Y")})" %>
-          <% else %>
-            -
-          <% end %>
-        </h2>
-      </p>
+<section class="section">
+  <div class="container">
+    <div class="title is-3">
+      <p>Weight</p>
     </div>
+    <% if @starting.present? %>
+      <table class="table is-striped is-hoverable is-fullwidth">
+        <tbody>
+          <tr>
+            <td>Exponential moving average (last 15 results)</td>
+            <td><%= @ema_weight.round(2) %></td>
+          </tr>
+          <tr>
+            <td>Starting</td>
+            <td><%= "#{@starting.weight} (#{@starting.when.strftime("%d/%m/%Y")})" %></td>
+          </tr>
+          <tr>
+            <td>Lowest</td>
+            <td><%= "#{@lowest_weight.weight} (#{@lowest_weight.when.strftime("%d/%m/%Y")})" %></td>
+          </tr>
+          <tr>
+            <td>Latest</td>
+            <td><%= "#{@latest.weight} (#{@latest.when.strftime("%d/%m/%Y")})" %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="title is-3">
+      <p>Body fat</p>
+    </div>
+    <% if @starting.present? %>
+      <table class="table is-striped is-hoverable is-fullwidth">
+        <tbody>
+          <tr>
+            <td>Exponential moving average (last 15 results)</td>
+            <td><%= @ema_fat.round(2) %></td>
+          </tr>
+          <tr>
+            <td>Starting</td>
+            <td><%= "#{@starting.fat} (#{@starting.when.strftime("%d/%m/%Y")})" %></td>
+          </tr>
+          <tr>
+            <td>Lowest</td>
+            <td><%= "#{@lowest_fat.fat} (#{@lowest_fat.when.strftime("%d/%m/%Y")})" %></td>
+          </tr>
+          <tr>
+            <td>Latest</td>
+            <td><%= "#{@latest.fat} (#{@latest.when.strftime("%d/%m/%Y")})" %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
   </div>
 </section>

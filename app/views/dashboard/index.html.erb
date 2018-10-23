@@ -11,9 +11,12 @@
   </div>
 </section>
 
-<% if @progresses.present? %>
+<% if @progresses.present? && @weight_ema.present? %>
   <section class="section">
     <div class="container">
+      <div class="title is-3">
+        <p>Current weight exponential moving average (last 15 results): <%= @weight_ema.round(2) %></p>
+      </div>
       <% @progresses.each do |progress| %>
         <div class="title is-2">
           <p><%= progress[:goal] %></p>

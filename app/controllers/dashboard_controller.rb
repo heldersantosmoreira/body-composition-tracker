@@ -1,13 +1,13 @@
 class DashboardController < ApplicationController
   def index
-    latest = WeighIn.order(when: :desc).first
-    first = WeighIn.order(when: :asc).first
+    @weight_ema = WeighIn.last(15).pluck(:weight).ema
+    first_weight = WeighIn.order(when: :asc).pluck(:weight).first
 
-    if latest.present? && first.present?
-      @progresses = StatsHelper::WEIGHT_GOALS.each_with_index.map do |weight, i|
+    if @weight_ema.present? && first_weight.present?
+      @progresses = StatsHelper::WEIGHT_GOALS.each_with_index.map do |weight_goal, i|
         {
-          goal: weight,
-          progress: ((1 - (latest.weight - weight) / (first.weight - weight)) * 100).to_i
+          goal: weight_goal,
+          progress: ((1 - (@weight_ema - weight_goal) / (first_weight - weight_goal)) * 100).to_i
         }
       end
     end

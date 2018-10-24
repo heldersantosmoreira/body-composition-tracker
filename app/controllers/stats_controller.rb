@@ -36,6 +36,13 @@ class StatsController < ApplicationController
   end
 
   def predictions
-    @linear_regression = LinearRegression.new(WeighIn.last(15).pluck(:weight))
+    values = WeighIn.last(15).pluck(:weight)
+    emas =
+      1.upto(values.size).map do |size|
+        values.take(size).ema
+      end
+
+    @weight_lr = LinearRegression.new(values)
+    @weight_ema_lr = LinearRegression.new(emas)
   end
 end

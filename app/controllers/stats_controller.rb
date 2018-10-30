@@ -36,13 +36,7 @@ class StatsController < ApplicationController
   end
 
   def predictions
-    values = WeighIn.last(15).pluck(:weight)
-    emas =
-      1.upto(values.size).map do |size|
-        values.take(size).ema
-      end
-
-    @weight_lr = LinearRegression.new(values)
-    @weight_ema_lr = LinearRegression.new(emas)
+    weigths = WeighIn.order(:when).last(15).pluck(:weight)
+    @weight_lr = LinearRegression.new(weigths)
   end
 end

@@ -45,29 +45,5 @@
         </tbody>
       </table>
     </div>
-
-    <div class="content">
-      <h3>Weight exponential moving average - using the last 15 weigh ins in a linear regression</h3>
-      <table class="table is-striped is-hoverable is-fullwidth">
-        <tbody>
-          <tr>
-            <td>T + 3 days</td>
-            <td><%= @weight_ema_lr.next(3).round(2) %></td>
-          </tr>
-          <tr>
-            <td>T + 7 days</td>
-            <td><%= @weight_ema_lr.next(7).round(2) %></td>
-          </tr>
-          <tr>
-            <td>T + 15 days</td>
-            <td><%= @weight_ema_lr.next(15).round(2) %></td>
-          </tr>
-          <tr>
-            <td>T + 30 days</td>
-            <td><%= @weight_ema_lr.next(30).round(2) %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 </section>

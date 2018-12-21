@@ -28,10 +28,6 @@
       <table class="table is-striped is-hoverable is-fullwidth">
         <tbody>
           <tr>
-            <td>Exponential moving average (last 15 results)</td>
-            <td><%= @ema_weight.round(2) %></td>
-          </tr>
-          <tr>
             <td>Starting</td>
             <td><%= "#{@starting.weight} (#{@starting.when.strftime("%d/%m/%Y")})" %></td>
           </tr>
@@ -57,10 +53,6 @@
     <% if @starting.present? %>
       <table class="table is-striped is-hoverable is-fullwidth">
         <tbody>
-          <tr>
-            <td>Exponential moving average (last 15 results)</td>
-            <td><%= @ema_fat.round(2) %></td>
-          </tr>
           <tr>
             <td>Starting</td>
             <td><%= "#{@starting.fat} (#{@starting.when.strftime("%d/%m/%Y")})" %></td>

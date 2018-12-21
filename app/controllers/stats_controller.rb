@@ -1,3 +1,5 @@
+RollingAverage = Struct.new(:weight_average, :fat_average, :date_range, :size)
+
 class StatsController < ApplicationController
   def index
     @starting = WeighIn.order(when: :asc).first
@@ -22,12 +24,12 @@ class StatsController < ApplicationController
 
       @rolling_7day_average = timeline.each_slice(7).map do |slice|
         values = slice.map(&:last).compact
-        {
-          weight_average: values.inject(0) { |sum, el| sum + el.weight }.to_f / values.size,
-          fat_average: values.inject(0) { |sum, el| sum + el.fat }.to_f / values.size,
-          date_range: [slice.last.first, slice.first.first],
-          size: values.size
-        }
+        RollingAverage.new(
+          values.inject(0) { |sum, el| sum + el.weight }.to_f / values.size,
+          values.inject(0) { |sum, el| sum + el.fat }.to_f / values.size,
+          [slice.last.first, slice.first.first],
+          values.size
+        )
       end.reverse
     end
   end

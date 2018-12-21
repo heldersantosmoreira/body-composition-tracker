@@ -1,15 +1,20 @@
+Progress = Struct.new(:goal, :start, :current) do
+  def progress
+    if start.present? && current.present?
+      ((1 - (current - goal) / (start - goal)) * 100).to_i
+    end
+  end
+end
+
 class DashboardController < ApplicationController
   def index
-    @weight_ema = WeighIn.last(15).pluck(:weight).ema
     first_weight = WeighIn.order(when: :asc).pluck(:weight).first
+    last_7_days = WeighIn.last_7_days.pluck(:weight)
+    @weight_ema = last_7_days.size == 7 ? last_7_days.ema : nil
 
-    if @weight_ema.present? && first_weight.present?
-      @progresses = StatsHelper::WEIGHT_GOALS.each_with_index.map do |weight_goal, i|
-        {
-          goal: weight_goal,
-          progress: ((1 - (@weight_ema - weight_goal) / (first_weight - weight_goal)) * 100).to_i
-        }
+    @progresses =
+      StatsHelper::WEIGHT_GOALS.each_with_index.map do |weight_goal, i|
+        Progress.new(weight_goal, first_weight, @weight_ema)
       end
-    end
   end
 end

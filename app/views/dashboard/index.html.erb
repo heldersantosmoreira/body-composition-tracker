@@ -14,16 +14,21 @@
 <section class="section">
   <div class="container">
     <div class="title is-3">
-      <p>Current weight exponential moving average (last 7 days): <%= @weight_ema ? @weight_ema.round(2) : '?' %></p>
+      <% if @weight_ema %>
+        <p>Current weight exponential moving average (last 7 days): <%= @weight_ema.round(2) %></p>
+
+        <% @progresses.each do |progress| %>
+          <div class="title is-2">
+            <p><%= progress.goal %></p>
+          </div>
+          <div class="title is-5">
+            <p><%= progress.progress %>%</p>
+          </div>
+          <progress class="progress is-large" value="<%= progress.progress %>"  max="100"><%= progress.progress %>%</progress>
+        <% end %>
+      <% else %>
+        <p>Weigh in for 7 days in a row to see the exponential moving average!</p>
+      <% end %>
     </div>
-    <% @progresses.each do |progress| %>
-      <div class="title is-2">
-        <p><%= progress.goal %></p>
-      </div>
-      <div class="title is-5">
-        <p><%= progress.progress ? progress.progress : '?' %>%</p>
-      </div>
-      <progress class="progress is-large" value="<%= progress.progress %>"  max="100"><%= progress.progress %>%</progress>
-    <% end %>
   </div>
 </section>

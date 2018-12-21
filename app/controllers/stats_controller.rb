@@ -33,7 +33,7 @@ class StatsController < ApplicationController
   end
 
   def predictions
-    weigths = WeighIn.order(:when).last(15).pluck(:weight)
-    @weight_lr = LinearRegression.new(weigths)
+    weights = WeighIn.last_7_days.pluck(:weight)
+    @weight_lr = LinearRegression.new(weights)
   end
 end

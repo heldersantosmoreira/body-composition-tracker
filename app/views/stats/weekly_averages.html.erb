@@ -34,18 +34,18 @@
         <% if @rolling_7day_average.present? %>
           <% @rolling_7day_average.each_with_index do |avg, index| %>
             <tr>
-              <td><%= avg[:date_range].last.strftime("%d/%m/%Y") %> - <%= avg[:date_range].first.strftime("%d/%m/%Y") %></td>
-              <td><%= avg[:size] %></td>
+              <td><%= avg.date_range.last.strftime("%d/%m/%Y") %> - <%= avg.date_range.first.strftime("%d/%m/%Y") %></td>
+              <td><%= avg.size %></td>
               <td>
-                <%= avg[:weight_average].round(2) %>
+                <%= avg.weight_average.round(2) %>
                 <% if (index + 1) < @rolling_7day_average.size %>
-                  (<%= sprintf("%+.2f", avg[:weight_average] - @rolling_7day_average[index + 1][:weight_average]) %>)
+                  (<%= sprintf("%+.2f", avg.weight_average - @rolling_7day_average[index + 1].weight_average) %>)
                 <% end %>
               </td>
               <td>
-                <%= avg[:fat_average].round(2) %>
+                <%= avg.fat_average.round(2) %>
                 <% if (index + 1) < @rolling_7day_average.size %>
-                  (<%= sprintf("%+.2f", avg[:fat_average] - @rolling_7day_average[index + 1][:fat_average]) %>)
+                  (<%= sprintf("%+.2f", avg.fat_average - @rolling_7day_average[index + 1].fat_average) %>)
                 <% end %>
               </td>
             </tr>

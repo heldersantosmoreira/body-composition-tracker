@@ -29,8 +29,7 @@
 
     <div class="container">
       <p class="subtitle is-5">
-        <% total_count = @weigh_ins.total_count %>
-        <strong><%= @weigh_ins.size %></strong> out of <strong><%= total_count %></strong> <%= "weigh in".pluralize(total_count) %>
+        <%= page_entries_info @weigh_ins %>
       </p>
       <%= paginate @weigh_ins %>
       <table class="table is-striped is-hoverable is-fullwidth">

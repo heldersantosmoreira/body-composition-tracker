@@ -23,27 +23,35 @@
     </div>
 
     <div class="content">
-      <h3>Weight - using the last 7 (applicable) days in a linear regression</h3>
-      <table class="table is-striped is-hoverable is-fullwidth">
-        <tbody>
-          <tr>
-            <td>T + 3 days</td>
-            <td><%= @weight_lr.next(3).round(2) %></td>
-          </tr>
-          <tr>
-            <td>T + 7 days</td>
-            <td><%= @weight_lr.next(7).round(2) %></td>
-          </tr>
-          <tr>
-            <td>T + 15 days</td>
-            <td><%= @weight_lr.next(15).round(2) %></td>
-          </tr>
-          <tr>
-            <td>T + 30 days</td>
-            <td><%= @weight_lr.next(30).round(2) %></td>
-          </tr>
-        </tbody>
-      </table>
+      <h3>
+        Weight - using the last 7 days in a linear regression
+        <p class="is-size-6"><%= @last_7_days.join(', ') %></p>
+      </h3>
+
+      <% if @weight_lr %>
+        <table class="table is-striped is-hoverable is-fullwidth">
+          <tbody>
+            <tr>
+              <td>T + 3 days</td>
+              <td><%= @weight_lr.next(3).round(2) %></td>
+            </tr>
+            <tr>
+              <td>T + 7 days</td>
+              <td><%= @weight_lr.next(7).round(2) %></td>
+            </tr>
+            <tr>
+              <td>T + 15 days</td>
+              <td><%= @weight_lr.next(15).round(2) %></td>
+            </tr>
+            <tr>
+              <td>T + 30 days</td>
+              <td><%= @weight_lr.next(30).round(2) %></td>
+            </tr>
+          </tbody>
+        </table>
+      <% else %>
+        <p>Oops - weigh in for 7 days in a row to see the linear regression predictions!</p>
+      <% end %>
     </div>
   </div>
 </section>

@@ -18,7 +18,7 @@ class StatsController < ApplicationController
       timeline = @starting.when.to_date.upto(@latest.when.to_date).map do |date|
         [
           date,
-          @weigh_ins.find { |weigh_in| weigh_in.when.to_date == date }
+          @weigh_ins.find { |weigh_in| weigh_in.when.to_date == date },
         ]
       end
 

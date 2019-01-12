@@ -36,6 +36,6 @@ class StatsController < ApplicationController
 
   def predictions
     @last_7_days = WeighIn.last_7_days.order(when: :asc).pluck(:weight)
-    @weight_lr = @last_7_days.size == 7 ? LinearRegression.new(@last_7_days) : nil
+    @weight_lr = @last_7_days.size >= StatsHelper::MINIMUM_DAYS_REQUIRED ? LinearRegression.new(@last_7_days) : nil
   end
 end

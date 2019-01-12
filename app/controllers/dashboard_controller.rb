@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
   def index
     first_weight = WeighIn.order(when: :asc).pluck(:weight).first
     @last_7_days = WeighIn.last_7_days.order(when: :desc).pluck(:weight)
-    @weight_ema = @last_7_days.size == 7 ? @last_7_days.ema : nil
+    @weight_ema = @last_7_days.size >= StatsHelper::MINIMUM_DAYS_REQUIRED ? @last_7_days.ema : nil
 
     @progresses =
       StatsHelper::WEIGHT_GOALS.each_with_index.map do |weight_goal, i|

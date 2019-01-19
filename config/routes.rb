@@ -10,6 +10,6 @@ Rails.application.routes.draw do
     collection do
       get :weekly_averages
       get :predictions
-  end
+    end
   end
 end

@@ -28,7 +28,7 @@
         <% end %>
       <% else %>
         <h3>
-          Oops - weigh in for 7 days in a row to see the exponential moving average!
+          Oops - weigh in for at least 5 of the last 7 days to see the exponential moving average!
           <p class="is-size-6"><%= @last_7_days.join(', ') %></p>
         </h3>
       <% end %>

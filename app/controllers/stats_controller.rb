@@ -31,6 +31,8 @@ class StatsController < ApplicationController
           values.size
         )
       end.reverse
+
+      @rolling_7day_average = Kaminari.paginate_array(@rolling_7day_average).page(params[:page]).per(20)
     end
   end
 

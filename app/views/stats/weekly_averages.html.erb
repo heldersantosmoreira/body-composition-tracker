@@ -21,6 +21,10 @@
     <div class="content">
       <h1>Weekly averages</h1>
     </div>
+    <p class="subtitle is-5">
+      <%= page_entries_info @rolling_7day_average %>
+    </p>
+    <%= paginate @rolling_7day_average %>
     <table class="table is-striped is-hoverable is-fullwidth">
       <thead>
         <tr>

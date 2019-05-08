@@ -4,7 +4,7 @@ class WeighInsController < ApplicationController
   end
 
   def upload
-    @weigh_in_upload = WeighInUpload.new(params[:data])
+    @weigh_in_upload = WeighInTanitaUpload.new(params[:data])
 
     if @weigh_in_upload.save
       flash[:notice] = "#{@weigh_in_upload.records.size} records inserted."

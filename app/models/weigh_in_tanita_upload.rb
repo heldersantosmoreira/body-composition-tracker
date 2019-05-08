@@ -1,6 +1,6 @@
 require 'csv'
 
-class WeighInUpload
+class WeighInTanitaUpload
   include ActiveModel::Model
 
   attr_reader :file, :records

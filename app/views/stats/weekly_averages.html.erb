@@ -37,15 +37,15 @@
               <td><%= avg.date_range.last.strftime("%d/%m/%Y") %> - <%= avg.date_range.first.strftime("%d/%m/%Y") %></td>
               <td><%= avg.size %></td>
               <td>
-                <%= avg.weight_average.round(2) %>
-                <% if (index + 1) < @rolling_7day_average.size %>
-                  (<%= sprintf("%+.2f", avg.weight_average - @rolling_7day_average[index + 1].weight_average) %>)
+                <%= avg.weight_average&.round(2) %>
+                <% if avg.weight_average.present? && @rolling_7day_average.at(index + 1)&.weight_average.present? %>
+                  (<%= sprintf("%+.2f", avg.weight_average - @rolling_7day_average.at(index + 1).weight_average) %>)
                 <% end %>
               </td>
               <td>
-                <%= avg.fat_average.round(2) %>
-                <% if (index + 1) < @rolling_7day_average.size %>
-                  (<%= sprintf("%+.2f", avg.fat_average - @rolling_7day_average[index + 1].fat_average) %>)
+                <%= avg.fat_average&.round(2) %>
+                <% if avg.fat_average.present? && @rolling_7day_average.at(index + 1)&.fat_average.present? %>
+                  (<%= sprintf("%+.2f", avg.fat_average - @rolling_7day_average.at(index + 1).fat_average) %>)
                 <% end %>
               </td>
             </tr>

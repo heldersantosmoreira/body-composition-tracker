@@ -25,8 +25,8 @@ class StatsController < ApplicationController
       @rolling_7day_average = timeline.each_slice(7).map do |slice|
         values = slice.map(&:last).compact
         RollingAverage.new(
-          values.inject(0) { |sum, el| sum + el.weight }.to_f / values.size,
-          values.inject(0) { |sum, el| sum + el.fat }.to_f / values.size,
+          average(values.map(&:weight)),
+          average(values.map(&:fat)),
           [slice.last.first, slice.first.first],
           values.size
         )
@@ -37,5 +37,11 @@ class StatsController < ApplicationController
   def predictions
     @last_7_days = WeighIn.last_7_days.order(when: :asc).pluck(:weight)
     @weight_lr = @last_7_days.size >= StatsHelper::MINIMUM_DAYS_REQUIRED ? LinearRegression.new(@last_7_days) : nil
+  end
+
+  private
+
+  def average(values)
+    values.reduce(:+).to_f / values.size if values.size > 0
   end
 end

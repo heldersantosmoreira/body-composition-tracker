@@ -2,11 +2,11 @@ RollingAverage = Struct.new(:weight_average, :fat_average, :date_range, :size)
 
 class StatsController < ApplicationController
   def index
-    @starting = WeighIn.order(when: :asc).first
-    @latest = WeighIn.order(when: :desc).first
-
     @lowest_weight = WeighIn.order(weight: :asc).first
     @lowest_fat = WeighIn.order(fat: :asc).first
+
+    @highest_weight = WeighIn.order(weight: :desc).first
+    @highest_fat = WeighIn.order(fat: :desc).first
   end
 
   def weekly_averages

@@ -24,24 +24,18 @@
     <div class="title is-3">
       <p>Weight</p>
     </div>
-    <% if @starting.present? %>
-      <table class="table is-striped is-hoverable is-fullwidth">
-        <tbody>
-          <tr>
-            <td>Starting</td>
-            <td><%= "#{@starting.weight} (#{@starting.when.strftime("%d/%m/%Y")})" %></td>
-          </tr>
-          <tr>
-            <td>Lowest</td>
-            <td><%= "#{@lowest_weight.weight} (#{@lowest_weight.when.strftime("%d/%m/%Y")})" %></td>
-          </tr>
-          <tr>
-            <td>Latest</td>
-            <td><%= "#{@latest.weight} (#{@latest.when.strftime("%d/%m/%Y")})" %></td>
-          </tr>
-        </tbody>
-      </table>
-    <% end %>
+    <table class="table is-striped is-hoverable is-fullwidth">
+      <tbody>
+        <tr>
+          <td>Lowest</td>
+          <td><%= "#{@lowest_weight.weight} (#{@lowest_weight.when.strftime("%d/%m/%Y")})" %></td>
+        </tr>
+        <tr>
+          <td>Highest</td>
+          <td><%= "#{@highest_weight.weight} (#{@highest_weight.when.strftime("%d/%m/%Y")})" %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
@@ -50,23 +44,17 @@
     <div class="title is-3">
       <p>Body fat</p>
     </div>
-    <% if @starting.present? %>
-      <table class="table is-striped is-hoverable is-fullwidth">
-        <tbody>
-          <tr>
-            <td>Starting</td>
-            <td><%= "#{@starting.fat} (#{@starting.when.strftime("%d/%m/%Y")})" %></td>
-          </tr>
-          <tr>
-            <td>Lowest</td>
-            <td><%= "#{@lowest_fat.fat} (#{@lowest_fat.when.strftime("%d/%m/%Y")})" %></td>
-          </tr>
-          <tr>
-            <td>Latest</td>
-            <td><%= "#{@latest.fat} (#{@latest.when.strftime("%d/%m/%Y")})" %></td>
-          </tr>
-        </tbody>
-      </table>
-    <% end %>
+    <table class="table is-striped is-hoverable is-fullwidth">
+      <tbody>
+        <tr>
+          <td>Lowest</td>
+          <td><%= "#{@lowest_fat.fat} (#{@lowest_fat.when.strftime("%d/%m/%Y")})" %></td>
+        </tr>
+        <tr>
+          <td>Highest</td>
+          <td><%= "#{@highest_fat.fat} (#{@highest_fat.when.strftime("%d/%m/%Y")})" %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
